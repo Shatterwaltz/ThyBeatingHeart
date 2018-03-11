@@ -42,35 +42,37 @@ public class BulletMovement: MonoBehaviour {
         float z = 0;
         if(xAxisEquation.equationType == Equation.EquationType.SQUARE) {
             ExponentialEquation eq = (ExponentialEquation)xAxisEquation;
-            x = (float)(eq.outerCoefficient * Math.Pow(time * eq.innerCoefficient, eq.exponent) + initX);
+            x = (float)(eq.outerCoefficient * Math.Pow(time * eq.innerCoefficient, eq.exponent) );
         } else if(xAxisEquation.equationType == Equation.EquationType.SIN) {
             SineEquation eq = (SineEquation)xAxisEquation;
-            x = (float)(eq.outerCoefficient * Math.Sin(time * eq.innerCoefficient) + initX);
+            x = (float)(eq.outerCoefficient * Math.Sin(time * eq.innerCoefficient) );
         } else if(xAxisEquation.equationType == Equation.EquationType.LINEAR) {
             LinearEquation eq = (LinearEquation)xAxisEquation;
-            x = (float)(eq.coefficient * time + initX);
+            x = (float)(eq.coefficient * time);
         }
         if(yAxisEquation.equationType == Equation.EquationType.SQUARE) {
             ExponentialEquation eq = (ExponentialEquation)yAxisEquation;
-            y = (float)(eq.outerCoefficient * Math.Pow(time * eq.innerCoefficient, eq.exponent) + initY);
+            y = (float)(eq.outerCoefficient * Math.Pow(time * eq.innerCoefficient, eq.exponent) );
         } else if(yAxisEquation.equationType == Equation.EquationType.SIN) {
             SineEquation eq = (SineEquation)yAxisEquation;
-            y = (float)(eq.outerCoefficient * Math.Sin(time * eq.innerCoefficient) + initY);
+            y = (float)(eq.outerCoefficient * Math.Sin(time * eq.innerCoefficient) );
         } else if(yAxisEquation.equationType == Equation.EquationType.LINEAR) {
             LinearEquation eq = (LinearEquation)yAxisEquation;
-            y = (float)(eq.coefficient * time + initY);
+            y = (float)(eq.coefficient * time);
         }
         if(zAxisEquation.equationType == Equation.EquationType.SQUARE) {
             ExponentialEquation eq = (ExponentialEquation)zAxisEquation;
-            z = (float)(eq.outerCoefficient * Math.Pow(time * eq.innerCoefficient, eq.exponent) + initZ);
+            z = (float)(eq.outerCoefficient * Math.Pow(time * eq.innerCoefficient, eq.exponent));
         } else if(zAxisEquation.equationType == Equation.EquationType.SIN) {
             SineEquation eq = (SineEquation)zAxisEquation;
-            z = (float)(eq.outerCoefficient * Math.Sin(time * eq.innerCoefficient) + initZ);
+            z = (float)(eq.outerCoefficient * Math.Sin(time * eq.innerCoefficient));
         } else if(zAxisEquation.equationType == Equation.EquationType.LINEAR) {
             LinearEquation eq = (LinearEquation)zAxisEquation;
-            z = (float)(eq.coefficient * time + initZ);
+            z = (float)(eq.coefficient * time);
         }
-        transform.position = new Vector3((float)x, (float)y, (float)z);
+
+        transform.position = (transform.rotation * new Vector3((float)x, (float)y, (float)z))+new Vector3(initX, initY, initZ);
+        
         if(time > lifetime) {
             Destroy(this.gameObject);
         }
