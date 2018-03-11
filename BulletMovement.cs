@@ -12,10 +12,11 @@ public class BulletMovement: MonoBehaviour {
     /// <param name="xAxisEquation">Equation to model movement along the x axis</param>
     /// <param name="yAxisEquation">Equation to model movement along the y axis</param>
     /// <param name="zAxisEquation">Equation to model movement along the z axis</param>
-    public void Initialize(float lifetimeInSeconds, Equation xAxisEquation, Equation yAxisEquation, Equation zAxisEquation) {
+    public void Initialize(float lifetimeInSeconds, Equation xAxisEquation, Equation yAxisEquation, Equation zAxisEquation, float scale = 1f) {
         initX = transform.position.x;
         initY = transform.position.y;
         initZ = transform.position.z;
+        transform.localScale *= scale;
         this.xAxisEquation = xAxisEquation;
         this.yAxisEquation = yAxisEquation;
         this.zAxisEquation = zAxisEquation;
