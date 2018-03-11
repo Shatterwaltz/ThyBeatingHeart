@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BulletSpawn : MonoBehaviour {
-
+    public float seconds;
     /// <summary>
     /// A reference to a tracked object, in this case a controller.
     /// </summary>
@@ -32,7 +32,7 @@ public class BulletSpawn : MonoBehaviour {
         if( Controller.GetHairTriggerDown() ) {
             BulletMovement a = Instantiate(bullet, trackedObject.transform.position, trackedObject.transform.rotation);
             //a.transform.parent = transform.parent;
-            a.Initialize(3, new LinearEquation(0), new LinearEquation(0), new LinearEquation(10));
+            a.Initialize(seconds, new LinearEquation(0), new LinearEquation(0), new LinearEquation(10));
         }
 
     }

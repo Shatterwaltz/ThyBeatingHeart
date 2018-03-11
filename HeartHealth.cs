@@ -5,6 +5,7 @@ using UnityEngine;
 public class HeartHealth : MonoBehaviour {
 
     public int HP = 1;
+    public string collisionTag;
 
     /*
     public SerializeField HP {
@@ -47,12 +48,11 @@ public class HeartHealth : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other) {
         // Do damage if collision object is a "bullet"
-        if (other.gameObject.tag == "Bullet") {
+        if (other.gameObject.tag == collisionTag) {
             Debug.Log("Taking some damage, boss!");
             if (HP >= 1) {
                 HP -= 1;
             }
         }
-        Debug.Log(HP);
     }
 }

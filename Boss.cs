@@ -5,7 +5,7 @@ using UnityEngine;
 public class Boss: MonoBehaviour {
     public GameObject player;
 
-    float time = 60;
+    float time = 0;
     float fireTime = 0;
     float firetime2 = 0;
 
@@ -91,7 +91,8 @@ public class Boss: MonoBehaviour {
         } else if(time > 60 && phase < 2) {
             ++phase;
         } else if(time > 90) {
-            Destroy(transform.parent.gameObject);
+            time = 0;
+            phase = 1;
 
         }
 
